@@ -6,26 +6,16 @@
 <div class="container mt-2">
     <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/addClients">Add</a>
+          <a class="nav-link active" aria-current="page" href="/addClients">Add Clients</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/clients/delete">Delete</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/updateClients">Update</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/clients/transactions">Transactions</a>
+            <a href="/allClients" class="nav-link" >View All Clients</a>
         </li>
       </ul>
 </div>
 
-<%- include('partials/searchClients') %> <!--including a component search clients frm partials-->
-
-<div class="container mt-2">
-    <a href="/allClients" class="text-decoration-none" >View All Clients</a>
-</div>
-
+<%- include('../partials/searchClients') %> <!--including a component search clients frm partials-->
+<%if(searchClient){%>
 <div class="container mt-2 searchResultDiv border-bottom border-top border-2 border-success d-none">
     <!--this div is stored for search results-->
     <!--THIS WILL ONLY BE DISPLAYED when a search reasult is obtained -->
@@ -44,7 +34,8 @@
           </ul>
     </div>
 
-</div>
+</div> 
+<%}%>
 
 <div class="container mt-2">
     <div class="mt-1 pt-2 fw-bold">

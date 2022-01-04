@@ -24,7 +24,7 @@
 <div class="container mt-2 mb-2 fw-bold">
     <li class="list-group-item list-group-item-warning">
         <span class="text-capitalize mx-5">Add Client</span>
-        <span class=""> Date : <script> document.write(new Date().toLocaleDateString()); </script></span>
+        <span class=""> Date : <script> document.write(new Date().toLocaleDateString('en-GB')); </script></span>
     </li>
 </div>
 <form method="POST" action="/addClients">
@@ -52,10 +52,10 @@
             <div class="mb-3">
                 <select class="form-select fw-bold" name="clientType" aria-label="Default select example">
                     <option selected >Select Client Type</option>
-                    <option value="1">Manufacturer</option>
-                    <option value="2">Wholesaler</option>
-                    <option value="3">Retailer</option>
-                    <option value="3">Bullion Trader</option>
+                    <option value="manufacturer">Manufacturer</option>
+                    <option value="wholesaler">Wholesaler</option>
+                    <option value="retailer">Retailer</option>
+                    <option value="bullion trader">Bullion Trader</option>
                 </select>
             </div>
         </div>
@@ -81,11 +81,27 @@
                     Official Info :
                 </div>
                 <div>
-                    <label for="bullionBalance" class="form-label fw-bold">Silver Balance (Grms)</label>
-                    <input type="number" step="any" value=0 id="bullionBalance" class="form-control" name="bullionBalance">
+                    <label for="silverBalance" class="form-label fw-bold">Silver Balance (Grms)</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" checked required name="silverStatus" id="inlineRadio1" value="advance">
+                        <label class="form-check-label" for="inlineRadio1">Advance</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="silverStatus" id="inlineRadio2" value="pending">
+                        <label class="form-check-label" for="inlineRadio2">Pending</label>
+                      </div>
+                    <input type="number" step="any" value=0 id="silverBalance" class="form-control" name="silverBalance">
                 </div>
                 <div>
                     <label for="cashBalance" class="form-label fw-bold">Cash Balance (Rupees)</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" checked required name="cashStatus" id="inlineRadio3" value="advance">
+                        <label class="form-check-label" for="inlineRadio1">Advance</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="cashStatus" id="inlineRadio4" value="pending">
+                        <label class="form-check-label" for="inlineRadio2">Pending</label>
+                      </div>
                     <input type="number" step="any" value=0 id="cashBalance" class="form-control" name="cashBalance">
                 </div>
             </div>

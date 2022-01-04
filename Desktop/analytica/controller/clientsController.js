@@ -9,17 +9,16 @@ for eg: searching a client / updation a client / mining of client data for inves
 clientDbOperation(type of operation, dataNotRequired{type:array}) FUNC 
 */
 
+const clientDbOperation = require('../dbOperations/clientDbOperation');
+
 
 exports.getClients = (req,res)=>{
-    res.render('clients',
-        {
-            pageTitle:'Clients'
-        }
-    );
+    clientDbOperation.getClientHomePage(req,res);
+    
 };
 
 exports.addClients = (req,res)=>{
-    res.render('addClients',
+    res.render('client/addClients',
         {
             pageTitle:'Add Clients'
         }
@@ -29,31 +28,23 @@ exports.addClients = (req,res)=>{
 exports.addClients2Db = (req,res)=>{
     //console.log(req.body);
     //console.log(typeof(parseFloat(req.body.bullionBalance)));
+    clientDbOperation.addClients(req,res);
 };
 
 exports.deleteClients = (req,res)=>{
 
-    if(req.params.id !='clients'){
-        // delete a specific client frm database req.params.id is the objectId of the client to be deleted.
-         var isDeleted = deleteClient(req.params.id); // method retrun type is boolean type true/flse. 
-    }
-    var responseObject = {};
-    responseObject.isDeleted = isDeleted;
-    res.render('deleteClients',
-        {
-            pageTitle:'Delete Clients',
-            webPageDataObject : responseObject
-        }
-    );
+   clientDbOperation.deleteClientFromDb(req,res);
 };
 
-exports.updateClients = (req,res)=>{
-    res.render('updateClients',
-        {
-            pageTitle:'Update Clients'
-        }
-    );
+exports.updateClients = (req,res)=>{ // this func gets you the data frm the db of the client to be updated 
+    clientDbOperation.getClientToUpdate(req,res);
+   
 };
+
+exports.updateClient2Db =(req,res)=>{ // this function actually updates the data in db of the client 
+    clientDbOperation.updateClient(req,res);
+};
+
 
 exports.clientsTransactions = (req,res)=>{
     /* transaction of 3 types : 1. notManufacturer 2. manufacturer 3. pending, therefore responseObject will 
@@ -75,13 +66,10 @@ exports.clientsTransactions = (req,res)=>{
 };  
 
 exports.allClients = (req,res)=>{
-    var responseObject ={};
-    res.render('allClients',
-        {
-            pageTitle:'All Clients',
-            webPageDataObject:responseObject
-        }
-    );
+
+    //var id = req.params.id
+    clientDbOperation.getClients(req,res);
+   
 };
 
 exports.clientPage = (req,res)=>{
